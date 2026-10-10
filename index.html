@@ -213,6 +213,32 @@ footer a:hover{color:var(--coy)}
  section{padding:48px 0}
  .pd{grid-template-columns:1fr;padding:22px 18px;gap:20px}
  .modal{padding:8px}
+.grid{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+}
+.grid .thumb{
+  height:auto;
+  aspect-ratio:1/1;
+}
+
+.grid .cb{
+  padding:10px;
+}
+
+.grid .cb h3{
+  font-size:15px;
+  line-height:1.25;
+  margin:4px 0 8px;
+}
+
+.grid .price{
+  font-size:18px;
+}
+
+.grid .more{
+  font-size:11px;
+}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 
