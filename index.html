@@ -574,7 +574,10 @@ function openP(id){
  const p=PRODUCTS.find(x=>x.id===id);
  sel={p,col:isVar(p)?p.colors[0]:null,sz:null,q:1};
  if(isVar(p))sel.sz=p.sizes.find(t=>p.st[sel.col][t]>0)||null;
- drawP();$("modal").classList.add("on");$("veil").classList.add("on");
+ drawP();
+$("modal").classList.add("on");
+$("veil").classList.add("on");
+history.pushState({productoAbierto:true}, "");
 }
 function setCol(c){sel.col=c;const p=sel.p;if(!sel.sz||p.st[c][sel.sz]<1)sel.sz=p.sizes.find(t=>p.st[c][t]>0)||null;sel.q=1;drawP();}
 function setSz(t){sel.sz=t;sel.q=1;drawP();}
@@ -733,7 +736,17 @@ ${(mochilaFotos || camelbakFotos || dragonFotos || dobleFotos)? `
  </div>`;
 }
 
-function closeAll(){$("modal").classList.remove("on");$("veil").classList.remove("on");$("drawer").classList.remove("on");}
+function closeAll(){
+  const productoAbierto = $("modal").classList.contains("on");
+
+  $("modal").classList.remove("on");
+  $("veil").classList.remove("on");
+  $("drawer").classList.remove("on");
+
+  if(productoAbierto && history.state?.productoAbierto){
+    history.back();
+  }
+}
 
 function addCart(){
  const {p,col,sz,q}=sel,key=p.id+"|"+col+"|"+sz;
@@ -759,6 +772,11 @@ function sendWA(){
  window.open(wa(`Hola ${NEGOCIO}, quiero pedir:\n\n${lines}\n\nTotal aproximado: $${money(tot)}`),"_blank");
 }
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeAll();});
+window.addEventListener("popstate", () => {
+  if ($("modal").classList.contains("on")) {
+    closeAll();
+  }
+});
 renderNovedades();renderFeatured();renderFilters();render();drawCart();
 </script>
 </body>
