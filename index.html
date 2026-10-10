@@ -88,7 +88,25 @@ footer a:hover{color:var(--coy)}
 .modal{position:fixed;inset:0;z-index:100;display:none;place-items:center;padding:16px;overflow:auto}
 .modal.on{display:grid}
 .pd{position:relative;background:var(--field);color:#fff;width:min(960px,100%);border-radius:4px;display:grid;grid-template-columns:1fr 1fr;gap:32px;padding:32px;margin:auto}
-.pd .x{position:absolute;top:8px;right:14px;background:none;border:0;color:#fff;font-size:32px;line-height:1}
+.pd .x{
+  position:absolute;
+  top:12px;
+  right:12px;
+  background:#39452B;
+  color:#fff;
+  border:2px solid #fff;
+  border-radius:50%;
+  width:44px;
+  height:44px;
+  font-size:28px;
+  font-weight:bold;
+  line-height:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  z-index:20;
+}
 
 .pimg{aspect-ratio:1;background:var(--c);border-radius:4px;display:grid;place-items:center;overflow:hidden}
 
